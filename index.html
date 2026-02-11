@@ -33,7 +33,7 @@
              name="avaliacao-imovel"
              method="POST"
              data-netlify="true"
-             autocomplete="/step2.html"
+             autocomplete="on"
           >
           <input type="hidden" name="form-name" value="avaliacao-imovel" />
 
@@ -179,5 +179,28 @@
       }));
     })();
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector('form[name="avaliacao-imovel"]');
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      try {
+        const data = new FormData(form);
+        await fetch("/", {
+          method: "POST",
+          body: data
+        });
+      } catch (err) {
+        // mesmo que falhe, seguimos para o step 2
+      }
+
+      window.location.href = "/step2.html";
+    });
+  });
+</script>
+
 </body>
 </html>
