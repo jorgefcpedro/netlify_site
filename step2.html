@@ -85,6 +85,23 @@
     }
   })();
 </script>
+<script>
+  (function () {
+    const textarea = document.querySelector('textarea[name="notas"]');
+    if (!textarea) return;
+
+    // carrega o que já tinha (se voltar atrás)
+    textarea.value = localStorage.getItem("avaliacao_notas") || "";
+
+    // guarda a cada escrita
+    const save = () => localStorage.setItem("avaliacao_notas", textarea.value || "");
+    textarea.addEventListener("input", save);
+    textarea.addEventListener("change", save);
+
+    // garante guardar ao sair da página
+    window.addEventListener("beforeunload", save);
+  })();
+</script>
 
 </body>
 </html>
