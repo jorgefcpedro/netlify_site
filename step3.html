@@ -35,7 +35,13 @@
             <h2>Adicionar Fotos do Imóvel (opcional)</h2>
             <p class="step-helper step3-helper"><strong>As fotos ajudam-nos a tornar a avaliação mais precisa</strong></p>
 
-            <form class="form" data-step="3">
+            <form
+             class="form"
+             data-step="3"
+             method="POST"
+             action="/success.html"
+             enctype="multipart/form-data"
+            >
               <div class="upload-box" data-dropzone>
                 <img src="assets/img/icon-upload.png" alt="" aria-hidden="true" />
                 <p>Arraste as fotos para aqui<br>ou</p>
