@@ -36,6 +36,7 @@
              autocomplete="on"
           >
           <input type="hidden" name="form-name" value="avaliacao-imovel" />
+          <input type="hidden" name="notas" id="notas_hidden" value="" />
 
 
               <input class="input" type="text" name="nome" placeholder="Nome" required />
@@ -188,6 +189,9 @@
       e.preventDefault();
 
       try {
+        const notas = localStorage.getItem("avaliacao_notas") || "";
+        const hiddenNotas = document.getElementById("notas_hidden");
+        if (hiddenNotas) hiddenNotas.value = notas;
         const data = new FormData(form);
         await fetch("/", {
           method: "POST",
@@ -198,6 +202,7 @@
       }
 
       window.location.href = "/step2.html";
+      localStorage.removeItem("avaliacao_notas");
     });
   });
 </script>

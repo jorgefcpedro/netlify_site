@@ -33,7 +33,7 @@
 
 
           <div class="card step-card">
-            <form class="form" data-step="2" method="GET" action="/step3.html">
+            <form class="form" data-step="2" id="step2Form" method="GET" action="/step3.html">
               <h2>Informação Adicional (opcional)</h2>
               <textarea class="textarea" name="notas" placeholder="Escreva aqui as suas notas..."></textarea>
               <p class="step-helper">Ex.: garagem ou lugar de estacionamento, varanda/terraço/jardim, piscina, vista, exposição solar, elevador, ar condicionado, painéis solares, quando pretende vender, etc.</p>
@@ -41,7 +41,7 @@
 
               <div class="form-actions">
                 <button class="btn center" type="submit">CONTINUAR A AVALIAÇÃO</button>
-                <a class="link-muted" href="/step3.html">Saltar este passo</a>
+                <a class="link-muted" href="/step3.html" id="skipStep2">Saltar este passo</a>
               </div>
             </form>
           </div>
@@ -66,5 +66,25 @@
   </footer>
 
   <script src="assets/js/form.js"></script>
+  <script>
+  (function () {
+    const form = document.getElementById("step2Form");
+    const textarea = document.querySelector('textarea[name="notas"]');
+    const skip = document.getElementById("skipStep2");
+
+    if (form) {
+      form.addEventListener("submit", () => {
+        localStorage.setItem("avaliacao_notas", textarea?.value || "");
+      });
+    }
+
+    if (skip) {
+      skip.addEventListener("click", () => {
+        localStorage.setItem("avaliacao_notas", textarea?.value || "");
+      });
+    }
+  })();
+</script>
+
 </body>
 </html>
