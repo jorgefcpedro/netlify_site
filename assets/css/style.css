@@ -1,0 +1,1328 @@
+:root{
+  --navy-900:#0d1e36;
+  --navy-850:#0c243a;
+  --navy-800:#0f2842;
+  --card:#2a394f;
+  --card-2:#233449;
+  --muted:#b8c3d1;
+  --white:#ffffff;
+  --border:rgba(255,255,255,0.78);
+  --pill:rgba(255,255,255,0.12);
+  --shadow:0 18px 45px rgba(0,0,0,0.35);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  background:var(--navy-900);
+  color:var(--white);
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+
+.container{
+  position: relative;
+  width:min(1200px, calc(100% - 64px));
+  margin:0 auto;
+}
+.wrap{
+  width: min(940px, 100%);
+  margin: 0 auto;
+  padding: 0 18px;
+  box-sizing: border-box;
+}
+
+.hero{
+  position: relative;
+  overflow: hidden;
+
+  background-image: url('../img/bg-hero.webp')  !important;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+
+  background-color: #0d1d34;
+  background-blend-mode: normal;
+}
+
+.hero::before,
+.hero::after{
+  content: none !important;
+}
+
+.hero-inner{
+  position: relative;
+  padding: 26px 0 40px;
+  z-index: 10;
+}
+
+.top-logo{
+  width:150px;
+  margin:0 auto 16px;
+  opacity:0.95;
+  display:flex;
+  justify-content:center;
+}
+.top-logo img{
+  width:120px; /* mantém o que tinhas */
+}
+
+.h1{
+  margin:0;
+  text-align:center;
+  font-weight:700;
+  font-size:42px;
+  line-height:1.06;
+  letter-spacing:-0.01em; /* teu ajuste */
+}
+.sub{
+  margin:10px 0 14px;
+  text-align:center;
+  font-weight:400;
+  font-size:23px;
+  opacity:0.95;
+  letter-spacing:0.03em; /* teu ajuste */
+}
+
+/* ===== MICRO-PROOF (DESKTOP BASE) ===== */
+.micro-proof{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:26px;      /* teu ajuste */
+  margin-bottom:38px;   /* teu ajuste */
+  font-size:16.8px;     /* teu ajuste final */
+  font-weight:700;
+}
+.micro-proof img{width:32px; height:32px;}
+.micro-proof span{
+  letter-spacing:0.07em; /* teu ajuste */
+}
+
+.hero-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns: 520px 1fr;
+  gap:48px;
+  align-items:start;
+  margin-top:26px;
+}
+
+.person img{
+  width:420px;
+  filter: drop-shadow(0 22px 45px rgba(0,0,0,0.45));
+}
+
+.card{
+  background:rgba(42,57,79,0.92);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.input, .select, .textarea{
+  width:100%;
+  background:rgba(18,32,49,0.15);
+  border:2px solid var(--border);
+  color:var(--white);
+  border-radius:12px;
+  padding:14px 16px;
+  font-size:20px;
+  outline:none;
+}
+.input::placeholder, .textarea::placeholder{color:rgba(255,255,255,0.75)}
+.textarea{min-height:140px; resize:vertical;}
+
+.small-note{
+  margin-top:4px;
+  font-size:10px;
+  color:rgba(255,255,255,0.7);
+}
+.small-note a{color:rgba(255,255,255,0.9)}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px 30px;
+  border-radius:12px;
+  border:0;
+  background:#ffffff;
+  color:#0b1f33;
+  font-weight:700;
+  font-size:17px;
+  letter-spacing:0.3px;
+  cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 12px 26px rgba(0,0,0,0.25);
+}
+.btn:active{transform:translateY(1px)}
+.btn.wide{width:100%}
+.btn.center{margin:0 auto}
+
+.form-actions{margin-top:10px}
+
+.link-muted{
+  margin-top:8px;
+  text-align:center;
+  color:rgba(255,255,255,0.65);
+  font-size:12px;
+  text-decoration:none;
+}
+.link-muted:hover{text-decoration:underline}
+
+.benefit-pill{
+  margin:26px auto 0;
+  width:min(980px, 100%);
+  background:rgba(39,53,76);
+  border-radius:16px;
+  padding:14px 18px;
+  display:flex;
+  justify-content:center;
+  gap: clamp(28px, 5vw, 56px);
+  align-items:center;
+}
+.benefit-pill .item{
+  letter-spacing: 0.05em;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  font-size:29px;
+  font-weight:700;
+}
+.benefit-pill img{width:28px; height:28px; opacity:0.95;}
+.benefit-pill.benefit-pill--main .item img{
+  transform: translateX(-15px);
+}
+
+.benefit-cards{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:50px;
+  margin-top:22px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 0 0px;
+  box-sizing: border-box;
+}
+.benefit-card{
+  background:#28364d;
+  border-radius:22px;
+  padding:50px 20px;
+  text-align:center;
+  box-shadow:0 14px 38px rgba(0,0,0,0.28);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.benefit-card img{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 25px;
+  opacity: 0.95;
+}
+.benefit-card img[src*="icon-contacto"]{
+  transform: scale(1.18);
+  transform-origin: center;
+}
+.benefit-title{font-weight:700; font-size:18px; margin:0 0 8px}
+.benefit-text{margin:0; font-size:15px; color:rgba(255,255,255,0.78); line-height:1.4}
+
+.section-cta{padding:24px 0 10px}
+.section-cta{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+.section-cta .btn{margin:0;}
+
+.about{
+  background:#bfc4ca;
+  color:#ffffff;
+  padding:0 0 5px;
+}
+.about-inner{
+  width: min(940px, 100%);
+  margin: 0 auto;
+  padding: 35px 0;
+  box-sizing: border-box;
+
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+
+.about h3{
+  margin: 0 0 8px;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+.about p{
+  margin:0 0 12px;
+  color:rgba(255,255,255,0.92);
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+.about-lead{
+  font-weight: 600;
+  font-size: 18.5px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+.about-text p:not(.about-lead){
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.88);
+}
+.about-text p:last-of-type{margin-bottom:0;}
+.about-text p{margin-bottom:12px;}
+.about-text{max-width:100%;}
+
+.zome-logo{justify-self:end; opacity:0.95}
+.zome-logo img{width:140px}
+
+.contact-bar{
+  margin-top:0;
+  background:#27354c;
+  border-radius:14px;
+  padding:18px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.contact-left{display:flex; flex-direction:column; gap:3px}
+.contact-left strong{font-size:15px; letter-spacing: 0.05em;}
+.contact-left span{font-size:12px; color:rgba(255,255,255,0.78)}
+.contact-right{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
+.contact-item{display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700}
+.contact-item img{width:22px; height:22px}
+
+.footer{
+  background:#081a2b;
+  padding:16px 0;
+  font-size:12px;
+  color:rgba(255,255,255,0.85);
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.footer a{color:rgba(255,255,255,0.85)}
+
+/* Multi-step pages */
+.step-title{
+  text-align:center;
+  margin:18px 0 0;
+  font-size:16px;
+  font-weight:400;
+  color:rgba(255,255,255,0.85);
+}
+.step-wrapper{
+  padding:28px 0 46px;
+  margin-top: -20px;
+}
+.step-wrapper .form-actions{
+  margin-top: 30px;
+}
+
+.step-card{
+  width:min(920px, calc(100% - 64px));
+  margin:18px auto 0;
+}
+.step-card h2{
+  margin:0 0 10px;
+  font-size:24px;
+  font-weight:400;
+}
+.step-card h2 strong{font-weight:700}
+.step-helper{margin:0 0 14px; font-size:12px; color:rgba(255,255,255,0.8)}
+
+.upload-box{
+  border:2px dashed rgba(255,255,255,0.65);
+  border-radius:14px;
+  padding:26px 16px;
+  text-align:center;
+  margin:16px 0 14px;
+  background:rgba(0,0,0,0.08);
+  position:relative;
+}
+.upload-box img{width:52px; height:52px; margin:0 auto 10px; opacity:0.9}
+.upload-box p{margin:0; font-size:12px; color:rgba(255,255,255,0.85)}
+.upload-box a{color:rgba(255,255,255,0.95); font-weight:700}
+.upload-meta{font-size:12px; color:rgba(255,255,255,0.75); line-height:1.4}
+.upload-emph{margin-top:8px; font-size:14px; font-weight:700}
+.files-list{margin-top:10px; font-size:12px; color:rgba(255,255,255,0.85)}
+
+.success-icon{width:110px; height:110px; margin:0 auto 10px;}
+.success-title{margin:0 0 12px; text-align:center; font-size:24px; font-weight:700; color:#95c49b}
+.success-text{margin:0; text-align:center; color:rgba(255,255,255,0.92); line-height:1.5}
+.success-bold{margin:16px 0 0; text-align:center; font-weight:700}
+
+        </div>
+      </div>
+    </div>
+    <img class="hero-person" src="assets/img/jorge.png" alt="Jorge Pedro">
+  </header>
+.form input[type="tel"]{ margin-bottom: 26px; }
+.form input[type="tel"] ~ input,
+.form input[type="tel"] ~ select{ font-size: 14px; }
+
+.form .btn{
+  width: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin: 0 auto;
+  display: block;
+}
+.form .small-note{
+  text-align:center;
+  max-width:360px;
+  margin:12px auto 0;
+}
+
+.hero-grid .card{
+  max-width:450px;
+  width:100%;
+  margin-left:auto;
+  transform: translateX(40px); /* teu desktop */
+}
+
+.benefit-pill.benefit-pill--main{
+  margin: 50px auto !important;
+}
+
+.step-card h2{
+  font-size: 20px;
+  line-height: 1.25;
+  margin-left: 20px;
+}
+.step-helper{
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.step-wrapper .form-actions{ text-align:center; }
+.step-wrapper .form-actions .link-muted{
+  display:inline-block;
+  margin-top:10px;
+}
+.step3-helper{ margin-left: 20px; font-size: 11px; }
+
+.form[data-step="3"] .upload-box{
+  margin-top:25px;
+  margin-bottom:0;
+}
+.form[data-step="3"] .upload-meta{
+  font-size:14px;
+  line-height:1.4;
+  color:rgba(255,255,255,0.85);
+}
+.form[data-step="3"] .form-actions{ margin-top:0; text-align:center; }
+.form[data-step="3"] .form-actions .link-muted{ font-size:10px; }
+
+.success-bold{ font-size: 12px; }
+.hero .contact-bar{ max-width: 920px; margin: 0 auto; }
+
+.success-actions{ text-align:center; }
+.success-actions .btn{ display:inline-block; width:auto; }
+
+@media (max-width: 980px){
+  .container{width:calc(100% - 32px)}
+  .hero-grid{grid-template-columns:1fr; gap:18px}
+  .person{order:2; min-height:auto; justify-content:center}
+  .person img{width:min(360px, 90%)}
+  .card{order:1}
+  .benefit-cards{grid-template-columns:1fr}
+  .benefit-pill{flex-direction:column; gap:10px}
+  .benefit-pill .item{font-size:22px}
+  .h1{font-size:38px}
+  .sub{font-size:20px}
+  .about-inner{grid-template-columns:1fr; text-align:left}
+  .zome-logo{justify-self:start}
+  .contact-bar{flex-direction:column; align-items:flex-start}
+  .footer-inner{flex-direction:column; gap:10px; align-items:flex-start}
+  .step-card{width:calc(100% - 32px)}
+}
+
+@media (max-width: 480px){
+  .input, .select, .textarea{font-size:18px; padding:12px 14px}
+  .btn{width:100%}
+}
+
+/* =========================================================
+   MOBILE (≤768px) — compactar e manter tudo consistente
+   ========================================================= */
+@media (max-width: 768px){
+
+  html, body{ overflow-x:hidden; }
+
+  /* container com respiro e centrado */
+  .container{
+    width: calc(100% - 32px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* HERO mais compacto */
+  .hero-inner{
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .top-logo{ margin-bottom: 10px; }
+
+  /* H1: 1 linha e centrado (SE + Pro Max), sem mexer no desktop */
+  header.hero h1.h1{
+    text-align:center;
+    width:100%;
+    margin: 0 auto 8px;
+    white-space: nowrap;
+    display:block;
+    font-size: clamp(21px, 5.4vw, 24px);
+    line-height:1.05;
+    letter-spacing:-0.4px;
+  }
+
+  .hero .sub{
+    font-size: 16px;
+    line-height: 1.35;
+    margin: 0 0 12px;
+  }
+
+  /* hero-grid: 2 colunas (form + foto) sem invadir */
+  :root{ --photo-col: 30vw; }
+
+  .hero .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr var(--photo-col);
+    column-gap: 12px;
+    align-items: start;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .hero .hero-grid .card{
+    grid-column: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    transform: none;
+  }
+
+.hero .hero-person{
+  position:absolute;
+  right: 20px;
+  top: 320px;
+
+  width: 360px;      /* tamanho desktop */
+  max-width: none;   /* remove o limite de 200px */
+  height: auto;
+
+  z-index: 2;
+  pointer-events: none;
+  left: auto;
+  bottom: auto;
+  transform: none;
+}
+
+
+  .hero .input{ padding: 10px 12px; }
+  .hero .btn.wide{ padding: 12px 14px; }
+
+  .hero .small-note{
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .hero .small-note a{ font-size: 11px; }
+
+  /* FOOTER */
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width: 520px;
+    margin: 0 auto;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+  .footer-inner p{ margin:0; }
+  .footer-inner a{ white-space:nowrap; }
+}
+
+/* =========================================================
+   ABOUT / CONTACT em mobile (mantém o que tinhas, mas sem “5px” bug)
+   ========================================================= */
+@media (max-width: 768px){
+
+  .about-inner{
+    max-width: 520px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+
+  .about h3{
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .about .about-lead{
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* aqui tinhas 5px (bug) — fica 14px */
+  .about .about-text p{
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contact-bar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .contact-left{
+    width:100%;
+    max-width:520px;
+    margin:0 auto 12px;
+    text-align:left;
+  }
+
+  .contact-right{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    max-width:520px;
+    margin:0 auto;
+    gap:32px;
+  }
+
+  .contact-item{ flex:1; }
+
+  .contact-item:first-child{
+    justify-content:flex-start;
+    text-align:left;
+  }
+  .contact-item:last-child{
+    justify-content:flex-end;
+    text-align:right;
+  }
+}
+
+/* =========================================================
+   STEP PAGES / SUCCESS (mantive os teus fixes principais)
+   ========================================================= */
+@media (max-width: 768px){
+
+  .step-wrapper{
+    width:100%;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+
+  .step-card{
+    width:100%;
+    max-width:520px;
+    margin:0 auto;
+    left:auto;
+    right:auto;
+    transform:none;
+    float:none;
+  }
+
+  .step-card .form{ width:100%; }
+
+  .step-card .textarea{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+    min-height:140px;
+    font-size:16px;
+    line-height:1.4;
+  }
+
+  .step-title{ margin-bottom:18px; }
+
+  .hero .top-logo{
+    width:100%;
+    max-width:520px;
+    margin:0 auto 14px;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+
+  .hero .step-wrapper{
+    width:100%;
+    max-width:520px;
+    margin:0 auto;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+
+  .hero .step-wrapper > .container{
+    width:100%;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .success-text br:not(:first-of-type){ display:none; }
+
+  .step-card .upload-box{
+    width:100%;
+    box-sizing:border-box;
+    padding:18px 14px;
+    text-align:center;
+  }
+
+  .step-card .upload-box a{ font-size:16px; }
+  .step-card .files-list{
+    width:100%;
+    box-sizing:border-box;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+}
+/* HERO — mobile: formulário mais compacto (sem alterar desktop) */
+@media (max-width: 375px){
+
+  /* menos ar entre campos */
+  .hero .form{ gap: 8px; }
+
+  /* inputs mais baixos */
+  .hero .input{
+    padding: 9px 12px;
+    font-size: 16px;        /* evita zoom iPhone e mantém legível */
+    border-radius: 11px;
+  }
+
+  /* card ligeiramente mais compacto */
+  .hero .card{
+    padding: 16px;
+  }
+
+  /* botão um pouco menos alto (mantém impacto) */
+  .hero .btn.wide{
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  /* nota legal mais compacta */
+  .hero .small-note{
+    margin-top: 8px;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+}
+/* HERO — iPhone SE: fazer o formulário entrar ainda mais cedo */
+@media (max-width: 375px){
+
+  /* menos ar no topo do hero */
+  .hero-inner{
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* reduz espaço entre texto e formulário */
+  .hero .micro-proof{
+    margin-bottom: 6px !important;
+  }
+
+  /* aproxima o form do texto */
+  .hero .hero-grid{
+    margin-top: 4px !important;
+  }
+
+  /* card um pouco mais compacto */
+  .hero .card{
+    padding: 14px !important;
+  }
+}
+/* =========================================================
+   MOBILE TOP COMPACT (SE + Pro Max) — só topo, não mexe no form
+   ========================================================= */
+@media (max-width: 600px){
+
+  .hero-inner{
+    padding-top: 10px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .top-logo{
+    margin: 0 auto 8px !important;
+  }
+  .top-logo img{
+    width: 110px !important;
+  }
+
+  header.hero h1.h1{
+    text-align: center !important;
+    margin: 0 0 6px !important;
+    white-space: nowrap !important;
+    font-size: clamp(21px, 5.4vw, 24px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.4px !important;
+  }
+
+  .hero .sub{
+    text-align: center !important;
+    margin: 0 0 6px !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+}
+/* =========================================================
+   FORM — MOBILE: compactação controlada (SE + Pro Max)
+   ========================================================= */
+@media (max-width: 600px){
+
+  /* controla apenas o espaçamento vertical */
+  .hero .form{
+    gap: 6px !important;   /* antes era maior */
+  }
+
+  /* inputs: menos altura, mas finger-friendly */
+  .hero .form .input{
+    padding: 8px 12px !important;  /* ↓ altura real */
+    font-size: 16px !important;    /* mantém legível / evita zoom */
+    line-height: 1.2 !important;
+  }
+
+  /* remove “ar” extra entre inputs e botão */
+  .hero .form-actions{
+    margin-top: 6px !important;
+  }
+
+  /* botão alinhado com inputs (não gigante) */
+  .hero .form .btn{
+    padding: 12px 14px !important;
+    font-size: 16px !important;
+  }
+
+  /* nota legal mais curta */
+  .hero .form .small-note{
+    margin-top: 6px !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+  }
+}
+/* FORM — mobile: descer ligeiramente (~0,5 cm) */
+@media (max-width: 600px){
+  .hero .hero-grid{
+    margin-top: 24px !important; /* ~0,5 cm */
+  }
+}
+/* FORM — mobile: inputs secundários com fonte ligeiramente menor */
+@media (max-width: 600px){
+
+  /* a partir do campo "tipo_imovel" */
+  .hero .form input[name="tipo_imovel"],
+  .hero .form input[name="quartos"],
+  .hero .form input[name="localizacao"],
+  .hero .form input[name="area"]{
+    font-size: 12px !important;   /* ↓ um pouco menor */
+  }
+}
+/* FORM — mobile: menos espaço entre Telefone e Tipo de Imóvel */
+@media (max-width: 600px){
+  .hero .form input[type="tel"]{
+    margin-bottom: 14px !important; /* antes era 26px */
+  }
+}
+/* FORM — mobile: ligeiramente mais largo (sem mexer em mais nada) */
+@media (max-width: 600px){
+  .hero .hero-grid .card{
+    max-width: 600px !important; /* antes era ~520px */
+  }
+}
+/* HERO — mobile: regras antigas (desativadas porque estavam a rebentar o tamanho) */
+ /*
+@media (max-width: 600px){
+  .hero .hero-person{
+    width: 600px !important;
+  }
+}
+@media (max-width: 600px){
+  .hero .hero-person{
+    top: 320px !important;
+  }
+}
+@media (max-width: 600px){
+  .hero .hero-person{
+    right: -20px !important;
+  }
+}
+@media (max-width: 600px){
+  .hero .hero-person{
+    transform: scale(1.15) !important;
+    transform-origin: center bottom;
+  }
+}
+*/
+
+/* CTA — texto diferente em mobile (sem alterar layout) */
+.btn .btn-mobile{ display: none; }
+
+@media (max-width: 600px){
+  .btn .btn-desktop{ display: none; }
+  .btn .btn-mobile{
+    display: inline;
+    white-space: nowrap;
+  }
+  .hero .btn.wide{
+    white-space: nowrap;
+    font-size: 16px;
+  }
+}
+/* FORM — mobile: alargar ligeiramente para a direita */
+@media (max-width: 600px){
+  .hero .hero-grid .card{
+    max-width: 560px;        /* antes era ~520px */
+    margin-left: 0;          /* não centra */
+    margin-right: auto;      /* cresce para a direita */
+  }
+}
+/* FORM — mobile: alargar para a direita (libertar do container) */
+@media (max-width: 600px){
+
+  .hero .hero-grid .card{
+    max-width: 100% !important;
+    width: 100% !important;
+
+    margin-right: -90px !important; /* ← sai do container */
+    margin-left: 0 !important;
+  }
+}
+/* CTA — mobile: botão com a mesma largura dos campos */
+@media (max-width: 600px){
+  .hero .form .btn{
+    display: block;        /* deixa de ser inline-flex */
+    width: 100%;           /* igual aos inputs */
+    max-width: 100%;
+  }
+}
+/* BENEFIT PILL — mobile: ícone numa linha, texto noutra, tudo centrado */
+@media (max-width: 600px){
+
+  .benefit-pill{
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .benefit-pill .item{
+    display: flex;
+    flex-direction: column;   /* ← chave */
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .benefit-pill .item img{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+}
+/* BENEFIT PILL — ajuste ÓTICO do ícone ✔️ (PNG torto) */
+@media (max-width: 600px){
+
+  .benefit-pill .item img{
+    display: block;
+    margin-left: 22px;   /* ← ajuste visual fino (óptico) */
+  }
+}
+/* BENEFIT PILL — equilíbrio vertical entre texto e ✔️ */
+@media (max-width: 600px){
+
+  .benefit-pill{
+    gap: 14px; /* controla o espaço ENTRE items */
+  }
+
+  .benefit-pill .item{
+    gap: 4px;  /* espaço interno uniforme */
+  }
+
+  /* espaço ANTES do ícone */
+  .benefit-pill .item img{
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+}
+/* SOBRE + CONTACTO — usar EXACTAMENTE a mesma régua do hero */
+@media (max-width: 600px){
+
+  .about{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .about-inner{
+    width: min(1200px, calc(100% - 64px)) !important; /* IGUAL ao .container */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .contact-bar{
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+/* CONTACTO — mobile: manter telefone + email numa linha */
+@media (max-width: 600px){
+
+  .contact-item{
+    font-size: 13px;           /* base segura */
+    white-space: nowrap;       /* impede quebra */
+    gap: 6px;                  /* ícone mais perto */
+  }
+
+  .contact-item img{
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* iPhone SE — ajuste fino */
+@media (max-width: 375px){
+
+  .contact-item{
+    font-size: 12px;           /* limite mínimo aceitável */
+  }
+}
+/* BENEFIT CARDS — mobile: reduzir espaço entre os blocos */
+@media (max-width: 600px){
+
+  .benefit-cards{
+    gap: 18px;          /* antes era ~50px */
+  }
+}
+/* HERO — reduzir espaços entre form, benefit pill e benefit cards (mobile) */
+@media (max-width: 600px){
+
+  /* espaço entre o formulário e o bloco "Avaliação Profissional" */
+  .hero .benefit-pill{
+    margin-top: 16px !important;   /* antes era bem maior */
+  }
+
+  /* espaço entre o bloco "Avaliação Profissional" e os cartões */
+  .hero .benefit-cards{
+    margin-top: 16px !important;
+  }
+}
+/* HERO — ajustar espaçamento ENTRE form, benefit pill e benefit cards */
+@media (max-width: 600px){
+
+  /* espaço entre o formulário e o bloco "Avaliação Profissional" */
+  .hero .benefit-pill{
+    margin-top: 26px !important;
+    margin-bottom: 26px !important;   /* ← ESTE era o que faltava */
+  }
+
+  /* espaço entre o bloco "Avaliação Profissional" e os cartões */
+  .hero .benefit-cards{
+    margin-top: 0 !important;         /* elimina dupla margem */
+  }
+}
+/* MICRO-PROOF — FINAL (centrado real + ícone colado sem empurrar o centro) */
+@media (max-width: 600px){
+
+  /* ocupa a largura e centra o CONJUNTO */
+header.hero .micro-proof{
+  width: fit-content !important;
+  max-width: calc(100% - 32px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 6px !important; /* espaço “real” */
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+}
+
+
+  /* ícone: aproxima opticamente sem mexer no layout */
+  header.hero .micro-proof img{
+    width: 22px !important;
+    height: 22px !important;
+    flex: 0 0 auto !important;
+    margin-top: 2px !important;
+    transform: translateX(4px) !important; /* cola ao texto; ajusta 8–14 se precisares */
+  }
+
+  /* texto */
+  header.hero .micro-proof span{
+    display: block !important;
+    margin: 0 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.22 !important;
+    max-width: 320px !important;
+  }
+}
+
+/* iPhone SE — força 2 linhas (sem 3) */
+@media (max-width: 375px){
+  header.hero .micro-proof span{
+    font-size: 12.5px !important;
+    max-width: 240px !important;
+  }
+}
+
+/* Pro Max — fonte um toque menor (se quiseres manter como estavas) */
+@media (min-width: 414px) and (max-width: 600px){
+  header.hero .micro-proof span{
+    font-size: 14px !important;
+    max-width: 340px !important;
+  }
+}
+/* MICRO-PROOF — Pro Max: correção óptica de centragem */
+@media (min-width: 414px) and (max-width: 600px){
+  header.hero .micro-proof{
+    transform: translateX(-50px) !important; /* ajusta fino: -6px a -14px */
+  }
+}
+/* MICRO-PROOF — só Pro Max / mobile grande: ícone mais colado */
+@media (min-width: 414px) and (max-width: 600px){
+  header.hero .micro-proof{
+    transform: translateX(-10px) !important; /* o que já tinhas */
+  }
+
+  header.hero .micro-proof img{
+    transform: translateX(30px) !important;  /* aproxima MAIS, mas só aqui */
+  }
+}
+/* MICRO-PROOF — iPhone SE: impedir ícone de cair para baixo */
+@media (max-width: 375px){
+  header.hero .micro-proof{
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+  }
+
+  header.hero .micro-proof img{
+    transform: translateX(2px) !important; /* ainda mais seguro no SE */
+  }
+}
+/* MICRO-PROOF — Pro Max: mover o conjunto (forçado) */
+@media (min-width: 414px) and (max-width: 600px){
+  header.hero .micro-proof{
+    position: relative !important;
+    left: 0 !important;       /* ajusta: -6px / -10px / -14px */
+    transform: none !important;   /* evita que um transform antigo bloqueie */
+  }
+}
+/* MICRO-PROOF — iPhone / iPhone Pro (2 linhas controladas) */
+@media (min-width: 376px) and (max-width: 413px){
+  header.hero .micro-proof span{
+    font-size: 13px !important;     /* entre SE e Pro Max */
+    max-width: 260px !important;    /* força 2 linhas */
+    line-height: 1.22 !important;
+  }
+}
+
+/* STEP 2 — reduzir fonte do texto explicativo */
+.form[data-step="2"] .step-helper{
+  font-size: 10px;      /* antes ~14px */
+  line-height: 1.4;
+  opacity: 0.85;        /* mais discreto */
+}
+/* STEP 2 — centrar título APENAS em mobile (não mexe no desktop) */
+@media (max-width: 768px){
+  .form[data-step="2"] h2{
+    margin-left: 0 !important;   /* anula o empurrão do desktop */
+    text-align: center;
+    font-size: 14px;
+  }
+}
+/* STEP 2 — reduzir fonte do texto de reforço (APENAS mobile) */
+@media (max-width: 768px){
+  .form[data-step="2"] .upload-emph{
+    font-size: 13px;      /* ajusta aqui se quiseres mais/menos */
+    line-height: 1.35;
+    text-align: center;  /* opcional, costuma ficar melhor em mobile */
+  }
+}
+/* STEP 3 — Mobile: reduzir e centrar o H2 (sem tocar no desktop) */
+@media (max-width: 768px){
+  .card.step-card:has(.step3-helper) h2{
+    font-size: 14px !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+/* STEP 3 — mobile: centrar frase de apoio */
+@media (max-width: 768px){
+  .step3-helper{
+    text-align: center;
+  }
+}
+/* STEP 3 — mobile: centrar frase e anular offset do desktop */
+@media (max-width: 768px){
+  .step3-helper{
+    margin-left: 0 !important;   /* remove o desvio */
+    margin-right: 0 !important;
+    text-align: center !important;
+  }
+}
+/* STEP 3 — mobile: reduzir fonte do texto "Aceita / Carregue fotos" */
+@media (max-width: 768px){
+  .upload-meta{
+    font-size: 11px !important;   /* seguro e legível */
+    line-height: 1.35 !important;
+  }
+}
+/* STEP 3 — mobile: centrar e reduzir fonte do texto final */
+@media (max-width: 768px){
+  .upload-emph{
+    text-align: center !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+}
+/* TEXTO INFORMATIVO (substitui link-muted quando não é link) */
+.info-muted{
+  margin-top: 10px;
+  font-size: 12px;                 /* igual ao que tinhas */
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  cursor: default;
+}
+@media (max-width: 768px){
+  .info-muted{
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+/* HERO — POLISH FINAL (mobile only) */
+@media (max-width: 768px){
+
+  /* topo com respiro mais “premium” */
+  .hero-inner{
+    padding-top: 12px !important;
+    padding-bottom: 16px !important;
+  }
+
+  /* logo ligeiramente mais discreto */
+  .top-logo{
+    margin-bottom: 8px !important;
+  }
+  .top-logo img{
+    width: 110px !important; /* se já tens igual, mantém */
+  }
+
+  /* título: um toque mais “tight” sem perder impacto */
+  header.hero h1.h1{
+    margin: 0 0 6px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.35px !important;
+  }
+
+  /* subtítulo: aproxima um pouco do H1 */
+  .hero .sub{
+    margin: 0 0 8px !important;
+    opacity: 0.92 !important;
+  }
+
+  /* micro-proof: controla o bloco sem “saltar” */
+  header.hero .micro-proof{
+    margin: 0 0 10px !important;
+  }
+}
+@media (max-width: 768px){
+  .hero .hero-person{
+    filter: drop-shadow(0 18px 34px rgba(0,0,0,0.35));
+  }
+}
+@media (max-width: 768px){
+  .hero .card{
+    border-radius: 18px;
+  }
+
+  .hero .input{
+    border-radius: 12px;
+  }
+
+  .hero .btn.wide{
+    border-radius: 12px;
+  }
+}
+/* FIX: garantir que a foto do Jorge fica presa ao HERO também em desktop */
+.hero{ position: relative; }
+.hero-person{
+  position: absolute;
+  right: 20px;
+  top: 320px;
+  max-width: 200px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+/* Foto do Jorge — regras finais */
+.hero{ position: relative; }
+
+.hero .hero-person{
+  position: absolute;
+  right: 180px;
+  top: 320px;
+  width: 360px;       /* desktop */
+  max-width: none;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .hero .hero-person{
+    width: 240px;
+    right: -35px;
+    top: 220px;
+  }
+}
+
+

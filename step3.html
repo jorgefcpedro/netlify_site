@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passo 3 de 3 | Fotos do imóvel</title>
+  <meta name="description" content="Carregar fotos (opcional) para tornar a avaliação mais precisa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="container">
+        <div class="top-logo">
+          <img src="assets/img/logo-jorge.svg" alt="Jorge Pedro" />
+        </div>
+
+        <h1 class="h1">Quer saber quanto vale a sua casa?</h1>
+        <p class="sub">Avaliação gratuita online, sem visitas.</p>
+
+        <div class="micro-proof">
+          <img src="assets/img/icon-check.png" alt="" aria-hidden="true" />
+          <span>Dezenas de avaliações realizadas mensalmente em Portugal.</span>
+        </div>
+
+        <div class="step-wrapper">
+          <div class="step-title">
+  Passo <strong>3</strong> de <strong>3</strong> – <strong>Fotos do Imóvel</strong>
+</div>
+
+          <div class="card step-card">
+            <h2>Adicionar Fotos do Imóvel (opcional)</h2>
+            <p class="step-helper step3-helper"><strong>As fotos ajudam-nos a tornar a avaliação mais precisa</strong></p>
+
+            <form class="form" data-step="3">
+              <div class="upload-box" data-dropzone>
+                <img src="assets/img/icon-upload.png" alt="" aria-hidden="true" />
+                <p>Arraste as fotos para aqui<br>ou</p>
+                <p><a href="#" onclick="document.getElementById('fotos').click(); return false;">Clique para selecionar</a></p>
+              </div>
+
+              <input id="fotos" name="fotos" type="file" accept="image/*" multiple style="display:none" />
+
+              <div class="upload-meta">
+                Aceita: JPG / PNG / HEIC<br>
+                Carregue 1 a 10 fotos
+              </div>
+              <div class="upload-emph">Pode enviar as fotos agora ou mais tarde.</div>
+              <div class="files-list" data-files></div>
+
+              <div class="form-actions">
+                <button class="btn center" type="submit">SUBMETER AVALIAÇÃO</button>
+                <div class="info-muted"> Entraremos em contacto para confirmar a avaliação.</div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 Jorge Pedro · Zome Guimarães ASA</p>
+      <div>
+        <a href="https://www.zome.pt/pt/politica-de-privacidade"
+   target="_blank"
+   rel="noopener">
+  Política de Privacidade
+</a>
+
+      
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/form.js"></script>
+</body>
+</html>
