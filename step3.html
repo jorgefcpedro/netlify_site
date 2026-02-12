@@ -86,52 +86,64 @@
     </div>
   </footer>
 
-  <script src="assets/js/form.js"></script>
   <script>
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector('form[name="avaliacao-imovel"]');
   const fileInput = document.getElementById("fotos");
   const hiddenLinks = document.getElementById("links_fotos");
 
-  if (!form || !fileInput || !hiddenLinks) return;
+  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const files = Array.from(fileInput.files);
+    const files = fileInput?.files ? Array.from(fileInput.files) : [];
     const uploadedUrls = [];
 
-    for (const file of files) {
-      const data = new FormData();
-      data.append("file", file);
-      data.append("upload_preset", "avaliacoes_imoveis");
+    // 👉 Só faz upload se houver fotos
+    if (files.length > 0) {
+      for (const file of files) {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "avaliacoes_imoveis");
 
-      try {
-        const res = await fetch(
-          "https://api.cloudinary.com/v1_1/dnpaahxsh/image/upload",
-          { method: "POST", body: data }
-        );
-        const json = await res.json();
-        if (json.secure_url) uploadedUrls.push(json.secure_url);
-      } catch (err) {
-        console.error("Erro ao enviar imagem", err);
+        try {
+          const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dnpaahxsh/image/upload",
+            { method: "POST", body: data }
+          );
+          const json = await res.json();
+          if (json.secure_url) uploadedUrls.push(json.secure_url);
+        } catch (err) {
+          console.error("Erro no upload da imagem", err);
+        }
       }
     }
 
-    hiddenLinks.value = uploadedUrls.join("\n");
+    // 👉 Guarda links (ou vazio)
+    if (hiddenLinks) {
+      hiddenLinks.value = uploadedUrls.join("\n");
+    }
 
+    // 👉 Submete para o Netlify
     const finalData = new FormData(form);
 
-    await fetch("/", {
-      method: "POST",
-      body: finalData
-    });
+    try {
+      await fetch("/", {
+        method: "POST",
+        body: finalData
+      });
+    } catch (err) {
+      console.error("Erro ao submeter formulário", err);
+    }
 
+    // 👉 Redireciona SEMPRE
     localStorage.clear();
     window.location.href = "/success.html";
   });
 });
 </script>
+
 
 </body>
 </html>
