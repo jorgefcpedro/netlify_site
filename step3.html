@@ -35,13 +35,15 @@
             <h2>Adicionar Fotos do Imóvel (opcional)</h2>
             <p class="step-helper step3-helper"><strong>As fotos ajudam-nos a tornar a avaliação mais precisa</strong></p>
 
-            <form
-             class="form"
-             data-step="3"
-             method="POST"
-             action="/success.html"
-             enctype="multipart/form-data"
-            >
+          <form
+           class="form"
+           name="avaliacao-imovel"
+           method="POST"
+           data-netlify="true"
+          >
+           <input type="hidden" name="form-name" value="avaliacao-imovel" />
+           <input type="hidden" name="links_fotos" id="links_fotos" />
+
               <div class="upload-box" data-dropzone>
                 <img src="assets/img/icon-upload.png" alt="" aria-hidden="true" />
                 <p>Arraste as fotos para aqui<br>ou</p>
@@ -85,5 +87,51 @@
   </footer>
 
   <script src="assets/js/form.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector('form[name="avaliacao-imovel"]');
+  const fileInput = document.getElementById("fotos");
+  const hiddenLinks = document.getElementById("links_fotos");
+
+  if (!form || !fileInput || !hiddenLinks) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const files = Array.from(fileInput.files);
+    const uploadedUrls = [];
+
+    for (const file of files) {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "avaliacoes_imoveis");
+
+      try {
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dnpaahxsh/image/upload",
+          { method: "POST", body: data }
+        );
+        const json = await res.json();
+        if (json.secure_url) uploadedUrls.push(json.secure_url);
+      } catch (err) {
+        console.error("Erro ao enviar imagem", err);
+      }
+    }
+
+    hiddenLinks.value = uploadedUrls.join("\n");
+
+    const finalData = new FormData(form);
+
+    await fetch("/", {
+      method: "POST",
+      body: finalData
+    });
+
+    localStorage.clear();
+    window.location.href = "/success.html";
+  });
+});
+</script>
+
 </body>
 </html>
