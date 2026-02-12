@@ -71,6 +71,13 @@
 
               <div class="form-actions">
                 <button class="btn center" type="submit">SUBMETER AVALIAÇÃO</button>
+                
+               <div id="sendingIndicator" class="sending-indicator" aria-live="polite">
+                 <span class="spinner"></span>
+                  <span class="sending-text">A enviar… pode demorar alguns segundos</span>
+              </div>
+
+
                 <div class="info-muted"> Entraremos em contacto para confirmar a avaliação.</div>
               </div>
             </form>
@@ -163,11 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     if (alreadySubmitted) return;
-alreadySubmitted = true;
+    alreadySubmitted = true;
 
-const submitBtn = form.querySelector('button[type="submit"]');
-if (submitBtn) submitBtn.disabled = true;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
+    const indicator = document.getElementById("sendingIndicator");
+    if (indicator) indicator.style.display = "block";
 
     const files = Array.from(fileInput.files || []);
     const uploadedUrls = [];
