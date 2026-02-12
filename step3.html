@@ -96,63 +96,7 @@
     </div>
   </footer>
 
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('form[name="avaliacao-imovel"]');
-  const fileInput = document.getElementById("fotos");
-  const hiddenLinks = document.getElementById("links_fotos");
-
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const files = fileInput?.files ? Array.from(fileInput.files) : [];
-    const uploadedUrls = [];
-
-    // 👉 Só faz upload se houver fotos
-    if (files.length > 0) {
-      for (const file of files) {
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "avaliacoes_imoveis");
-
-        try {
-          const res = await fetch(
-            "https://api.cloudinary.com/v1_1/dnpaahxsh/image/upload",
-            { method: "POST", body: data }
-          );
-          const json = await res.json();
-          if (json.secure_url) uploadedUrls.push(json.secure_url);
-        } catch (err) {
-          console.error("Erro no upload da imagem", err);
-        }
-      }
-    }
-
-    // 👉 Guarda links (ou vazio)
-    if (hiddenLinks) {
-      hiddenLinks.value = uploadedUrls.join("\n");
-    }
-
-    // 👉 Submete para o Netlify
-    const finalData = new FormData(form);
-
-    try {
-      await fetch("/", {
-        method: "POST",
-        body: finalData
-      });
-    } catch (err) {
-      console.error("Erro ao submeter formulário", err);
-    }
-
-    // 👉 Redireciona SEMPRE
-    localStorage.clear();
-    window.location.href = "/success.html";
-  });
-});
-</script>
+  
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("step3Form");
@@ -160,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dropzone = document.querySelector("[data-dropzone]");
   const filesList = document.querySelector("[data-files]");
   const hiddenLinks = document.getElementById("links_fotos");
+
+  let alreadySubmitted = false;
+
 
   if (!form || !fileInput) return;
 
@@ -214,6 +161,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4) Submit final: upload Cloudinary -> guardar links -> enviar Netlify -> success
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (alreadySubmitted) return;
+alreadySubmitted = true;
+
+const submitBtn = form.querySelector('button[type="submit"]');
+if (submitBtn) submitBtn.disabled = true;
+
 
     const files = Array.from(fileInput.files || []);
     const uploadedUrls = [];
