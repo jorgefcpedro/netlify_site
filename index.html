@@ -203,21 +203,24 @@
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("step1Form");
+  const form = document.getElementById("avaliacaoForm");
   if (!form) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    // guardar valores ANTES de qualquer navegação
     const data = new FormData(form);
-    for (const [k, v] of data.entries()) {
-      localStorage.setItem("avaliacao_" + k, String(v ?? ""));
+    for (const [key, value] of data.entries()) {
+      localStorage.setItem("avaliacao_" + key, value);
     }
 
-    window.location.href = "/step2.html";
+    // navegar explicitamente para o step 2
+    window.location.assign("/step2.html");
   });
 });
 </script>
+
 
 </body>
 </html>
