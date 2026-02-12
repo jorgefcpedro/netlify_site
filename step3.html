@@ -35,14 +35,24 @@
             <h2>Adicionar Fotos do Imóvel (opcional)</h2>
             <p class="step-helper step3-helper"><strong>As fotos ajudam-nos a tornar a avaliação mais precisa</strong></p>
 
-          <form
-           class="form"
-           name="avaliacao-imovel"
-           method="POST"
-           data-netlify="true"
-          >
-           <input type="hidden" name="form-name" value="avaliacao-imovel" />
-           <input type="hidden" name="links_fotos" id="links_fotos" />
+         <form
+          class="form"
+          id="step3Form"
+          name="avaliacao-imovel"
+          method="POST"
+          data-netlify="true"
+         >
+          <input type="hidden" name="form-name" value="avaliacao-imovel" />
+          <input type="hidden" name="nome" id="h_nome">
+          <input type="hidden" name="email" id="h_email">
+          <input type="hidden" name="telefone" id="h_telefone">
+          <input type="hidden" name="tipo_imovel" id="h_tipo_imovel">
+          <input type="hidden" name="quartos" id="h_quartos">
+          <input type="hidden" name="localizacao" id="h_localizacao">
+          <input type="hidden" name="area" id="h_area">
+          <input type="hidden" name="notas" id="h_notas">
+          <input type="hidden" name="links_fotos" id="links_fotos">
+
 
               <div class="upload-box" data-dropzone>
                 <img src="assets/img/icon-upload.png" alt="" aria-hidden="true" />
@@ -139,6 +149,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 👉 Redireciona SEMPRE
     localStorage.clear();
+    window.location.href = "/success.html";
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("step3Form");
+  const fileInput = document.getElementById("fotos");
+  const dropzone = document.querySelector("[data-dropzone]");
+  const filesList = document.querySelector("[data-files]");
+  const hiddenLinks = document.getElementById("links_fotos");
+
+  if (!form || !fileInput) return;
+
+  // 1) Preencher hidden fields com dados guardados
+  const map = [
+    ["nome", "h_nome"],
+    ["email", "h_email"],
+    ["telefone", "h_telefone"],
+    ["tipo_imovel", "h_tipo_imovel"],
+    ["quartos", "h_quartos"],
+    ["localizacao", "h_localizacao"],
+    ["area", "h_area"],
+  ];
+
+  map.forEach(([k, id]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = localStorage.getItem("avaliacao_" + k) || "";
+  });
+
+  const notasEl = document.getElementById("h_notas");
+  if (notasEl) notasEl.value = localStorage.getItem("avaliacao_notas") || "";
+
+  // 2) UI: listar ficheiros (sem mexer no design)
+  const renderFiles = () => {
+    if (!filesList) return;
+    const files = Array.from(fileInput.files || []);
+    filesList.innerHTML = files.map(f => `<div>${f.name}</div>`).join("");
+  };
+
+  fileInput.addEventListener("change", renderFiles);
+
+  // 3) Drag & Drop (nativo)
+  if (dropzone) {
+    dropzone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    dropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const dtFiles = e.dataTransfer?.files;
+      if (!dtFiles || dtFiles.length === 0) return;
+
+      // copiar para o input
+      const dt = new DataTransfer();
+      Array.from(dtFiles).forEach(f => dt.items.add(f));
+      fileInput.files = dt.files;
+
+      renderFiles();
+    });
+  }
+
+  // 4) Submit final: upload Cloudinary -> guardar links -> enviar Netlify -> success
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const files = Array.from(fileInput.files || []);
+    const uploadedUrls = [];
+
+    if (files.length > 0) {
+      for (const file of files) {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "avaliacoes_imoveis");
+
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dnpaahxsh/image/upload",
+          { method: "POST", body: data }
+        );
+
+        const json = await res.json();
+        if (json.secure_url) uploadedUrls.push(json.secure_url);
+      }
+    }
+
+    if (hiddenLinks) hiddenLinks.value = uploadedUrls.join("\n");
+
+    // Enviar para Netlify (mais compatível em urlencoded)
+    const formData = new FormData(form);
+    const body = new URLSearchParams();
+    for (const [k, v] of formData.entries()) body.append(k, String(v));
+
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    });
+
+    // limpar e ir para success
+    localStorage.removeItem("avaliacao_notas");
+    map.forEach(([k]) => localStorage.removeItem("avaliacao_" + k));
     window.location.href = "/success.html";
   });
 });

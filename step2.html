@@ -33,7 +33,8 @@
 
 
           <div class="card step-card">
-            <form class="form" data-step="2" id="step2Form" method="GET" action="/step3.html">
+            <form class="form" id="step2Form">
+
               <h2>Informação Adicional (opcional)</h2>
               <textarea class="textarea" name="notas" placeholder="Escreva aqui as suas notas..."></textarea>
               <p class="step-helper">Ex.: garagem ou lugar de estacionamento, varanda/terraço/jardim, piscina, vista, exposição solar, elevador, ar condicionado, painéis solares, quando pretende vender, etc.</p>
@@ -65,43 +66,37 @@
     </div>
   </footer>
 
-  <script src="assets/js/form.js"></script>
-  <script>
-  (function () {
-    const form = document.getElementById("step2Form");
-    const textarea = document.querySelector('textarea[name="notas"]');
-    const skip = document.getElementById("skipStep2");
-
-    if (form) {
-      form.addEventListener("submit", () => {
-        localStorage.setItem("avaliacao_notas", textarea?.value || "");
-      });
-    }
-
-    if (skip) {
-      skip.addEventListener("click", () => {
-        localStorage.setItem("avaliacao_notas", textarea?.value || "");
-      });
-    }
-  })();
-</script>
 <script>
-  (function () {
-    const textarea = document.querySelector('textarea[name="notas"]');
-    if (!textarea) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("step2Form");
+  const textarea = document.querySelector('textarea[name="notas"]');
+  const skip = document.getElementById("skipStep2");
 
-    // carrega o que já tinha (se voltar atrás)
+  // carregar se voltar atrás
+  if (textarea) {
     textarea.value = localStorage.getItem("avaliacao_notas") || "";
+    textarea.addEventListener("input", () => {
+      localStorage.setItem("avaliacao_notas", textarea.value || "");
+    });
+  }
 
-    // guarda a cada escrita
-    const save = () => localStorage.setItem("avaliacao_notas", textarea.value || "");
-    textarea.addEventListener("input", save);
-    textarea.addEventListener("change", save);
+  const goNext = () => {
+    localStorage.setItem("avaliacao_notas", textarea?.value || "");
+    window.location.href = "/step3.html";
+  };
 
-    // garante guardar ao sair da página
-    window.addEventListener("beforeunload", save);
-  })();
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    goNext();
+  });
+
+  skip?.addEventListener("click", (e) => {
+    e.preventDefault();
+    goNext();
+  });
+});
 </script>
+
 
 </body>
 </html>

@@ -28,16 +28,7 @@
 
         <div class="hero-grid">
           <div class="card">
-            <form
-             class="form"
-             name="avaliacao-imovel"
-             method="POST"
-             data-netlify="true"
-             autocomplete="on"
-          >
-          <input type="hidden" name="form-name" value="avaliacao-imovel" />
-          <input type="hidden" name="notas" id="notas_hidden" value="" />
-
+         <form class="form" id="step1Form" autocomplete="on">
 
               <input class="input" type="text" name="nome" placeholder="Nome" required />
               <input class="input" type="email" name="email" placeholder="E-mail" required />
@@ -205,6 +196,23 @@
       localStorage.removeItem("avaliacao_notas");
     });
   });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("step1Form");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    for (const [k, v] of data.entries()) {
+      localStorage.setItem("avaliacao_" + k, String(v ?? ""));
+    }
+
+    window.location.href = "/step2.html";
+  });
+});
 </script>
 
 </body>
